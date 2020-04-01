@@ -1,0 +1,43 @@
+# -*- coding: utf-8 -*-
+"""
+Spyder Editor
+
+Este é um arquivo de script temporário.
+"""
+
+import numpy as np #bbt computacao numerica
+import sympy as sp #bbt computacao simbólica
+sp.init_printing()
+
+
+# Cria as variáveis do problema
+phi, x,y,g,z = sp.var('phi, X, Y,G,Z')
+a,theta = sp.var('a,theta')
+
+theta = sp.Function('theta')(z)
+
+phi = (x**2+y**2)/2 + ((x**3 - (3*x*(y**2))) /(2*a)) - ((2*a**2)/27)
+phi = -phi
+
+# Diferenciando 4 vezes phi com relação a X
+d_11 = phi.diff(x)
+d_12 = d_11.diff(x)
+d_13 = d_12.diff(x)
+d_14 = d_13.diff(x)
+
+# Diferenciando 4 vezes phi com relação a Y
+d_21 = phi.diff(y)
+d_22 = d_21.diff(y)
+d_23 = d_22.diff(y)
+d_24 = d_23.diff(y)
+
+# Diferenciando 2 vezes phi com relação a y e 2 vezes com relaçao a x
+d_31 = phi.diff(y)
+d_32 = d_31.diff(y)
+d_33 = d_32.diff(x)
+d_34 = d_33.diff(x)
+
+soma = d_12+d_22
+display(soma)
+
+print("como as somas das segundas derivadas em relacao a x e y ")
